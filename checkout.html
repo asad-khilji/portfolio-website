@@ -31,13 +31,28 @@
 
       <div id="orderSummary" class="notice" style="margin:14px 0"></div>
 
-      <form class="form" id="checkoutForm" id="checkoutForm"
-      action="https://formsubmit.co/khiljiasad2@gmail.com"
-      method="POST">
+      <!-- ✅ FIXED: removed duplicate id attribute -->
+      <form class="form"
+        id="checkoutForm"
+        action="https://formsubmit.co/khiljiasad2@gmail.com"
+        method="POST">
+
+        <!-- ✅ ADDED: FormSubmit options -->
+        <input type="hidden" name="_subject" value="New Checkout Order" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+        <!-- Optional redirect after submit -->
+        <input type="hidden" name="_next" value="index.html" />
+
+        <!-- ✅ ADDED: these are what will carry items into the email -->
+        <input type="hidden" name="order_items" id="order_items" />
+        <input type="hidden" name="order_total" id="order_total" />
+
         <div class="two">
           <input class="input" name="name" placeholder="Full name" required />
           <input class="input" name="email" type="email" placeholder="Your email" required />
         </div>
+
         <div class="two">
           <input class="input" name="phone" placeholder="Phone (optional)" />
           <input class="input" name="company" placeholder="Company (optional)" />
@@ -45,11 +60,9 @@
 
         <textarea class="input" name="notes" placeholder="Notes / details (sizes, page count, links, brand colors, etc.)"></textarea>
 
-        <!-- Optional: If you later add a backend endpoint, set action="/submit" and method="POST" -->
         <button class="btn" type="submit" id="submitBtn">Submit Order (Email)</button>
-        <div class="small">
-          
-        </div>
+
+        <div class="small"></div>
       </form>
     </section>
 
@@ -58,6 +71,94 @@
     </div>
   </main>
 
+  <!-- ✅ ADDED: populate hidden fields with cart data BEFORE submit -->
+  <script>
+    // 🔥 IMPORTANT: set this to the same key your cart uses in checkout.js/index.js
+    const CART_KEY = "cart";
+
+    function readCart() {
+      // Try localStorage first, then sessionStorage
+      const raw =
+        localStorage.getItem(CART_KEY) ||
+        sessionStorage.getItem(CART_KEY);
+
+      if (!raw) return [];
+
+      try {
+        const parsed = JSON.parse(raw);
+        // Support either array cart OR object with items array
+        if (Array.isArray(parsed)) return parsed;
+        if (parsed && Array.isArray(parsed.items)) return parsed.items;
+        return [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function formatMoney(n) {
+      const num = Number(n || 0);
+      return "$" + num.toFixed(2);
+    }
+
+    function buildSummary(items) {
+      // Supports several common cart shapes:
+      // item.name/title/service, item.qty/quantity, item.price/amount
+      let total = 0;
+
+      const lines = items.map((item, idx) => {
+        const name = item.name || item.title || item.service || `Item ${idx + 1}`;
+        const qty = Number(item.qty || item.quantity || 1);
+        const price = Number(item.price || item.amount || 0);
+        const lineTotal = qty * price;
+        total += lineTotal;
+
+        // If your cart has no per-item price, it will still list items/qty.
+        const pricePart = price ? ` — ${formatMoney(price)} each` : "";
+        return `${name} x${qty}${pricePart}`;
+      });
+
+      return { text: lines.join("\n"), total };
+    }
+
+    // Show summary on page AND fill hidden fields
+    function syncOrderFields() {
+      const items = readCart();
+      const emptyNotice = document.getElementById("emptyNotice");
+      const orderSummary = document.getElementById("orderSummary");
+
+      if (!items || items.length === 0) {
+        emptyNotice.style.display = "block";
+        orderSummary.textContent = "No items found in cart.";
+        document.getElementById("order_items").value = "Cart was empty";
+        document.getElementById("order_total").value = "$0.00";
+        return;
+      }
+
+      emptyNotice.style.display = "none";
+
+      const summary = buildSummary(items);
+
+      // Page summary
+      orderSummary.innerHTML =
+        "<strong>Order Summary</strong><br>" +
+        summary.text.replace(/\n/g, "<br>") +
+        "<br><br><strong>Total:</strong> " + formatMoney(summary.total);
+
+      // Email fields (these will show in FormSubmit email)
+      document.getElementById("order_items").value = summary.text;
+      document.getElementById("order_total").value = formatMoney(summary.total);
+    }
+
+    // Fill immediately on load
+    syncOrderFields();
+
+    // Ensure fields are filled right before submit too
+    document.getElementById("checkoutForm").addEventListener("submit", function () {
+      syncOrderFields();
+    });
+  </script>
+
+  <!-- Your existing script (can stay) -->
   <script src="js/checkout.js"></script>
 </body>
 </html>
