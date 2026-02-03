@@ -1,1 +1,93 @@
-
+{
+  "business": {
+    "name": "AK Creative Services",
+    "emailTo": "khiljiasad2@gmail.com",
+    "currency": "USD"
+  },
+  "services": [
+    {
+      "id": "catalog-basic",
+      "name": "Catalog Design (Basic)",
+      "category": "Catalogs",
+      "price": 149,
+      "description": "Up to 8 pages, clean layout, print-ready PDF + source file.",
+      "turnaroundDays": 3,
+      "deliverables": ["Print-ready PDF", "Editable source file", "2 revisions"]
+    },
+    {
+      "id": "catalog-pro",
+      "name": "Catalog Design (Pro)",
+      "category": "Catalogs",
+      "price": 299,
+      "description": "Up to 20 pages, product styling, consistent branding, print-ready.",
+      "turnaroundDays": 5,
+      "deliverables": ["Print-ready PDF", "Editable source file", "3 revisions"]
+    },
+    {
+      "id": "website-landing",
+      "name": "Website (Landing Page)",
+      "category": "Websites",
+      "price": 249,
+      "description": "One-page responsive site (sections + contact form).",
+      "turnaroundDays": 4,
+      "deliverables": ["Responsive site", "Basic SEO", "1 revision"]
+    },
+    {
+      "id": "website-5page",
+      "name": "Website (Up to 5 pages)",
+      "category": "Websites",
+      "price": 549,
+      "description": "Multi-page responsive site with modern layout and navigation.",
+      "turnaroundDays": 7,
+      "deliverables": ["Responsive site", "Basic SEO", "2 revisions"]
+    },
+    {
+      "id": "data-entry-1k",
+      "name": "Data Entry (Up to 1,000 rows)",
+      "category": "Data Entry",
+      "price": 79,
+      "description": "Clean, format, and organize spreadsheets accurately.",
+      "turnaroundDays": 2,
+      "deliverables": ["Cleaned spreadsheet", "Formatting", "Quality check"]
+    },
+    {
+      "id": "flyer-single",
+      "name": "Flyer Design (Single)",
+      "category": "Flyers",
+      "price": 59,
+      "description": "1 flyer design (A4/Letter) for print + social export.",
+      "turnaroundDays": 2,
+      "deliverables": ["Print-ready PDF", "PNG export", "2 revisions"]
+    }
+  ],
+  "portfolio": [
+    {
+      "title": "Product Catalog Layout",
+      "type": "Catalog",
+      "tags": ["Catalogs", "Print"],
+      "image": "https://via.placeholder.com/900x600?text=Catalog+Sample",
+      "description": "Modern product catalog layout with clean typography."
+    },
+    {
+      "title": "Small Business Landing Page",
+      "type": "Website",
+      "tags": ["Websites", "Responsive"],
+      "image": "https://via.placeholder.com/900x600?text=Website+Sample",
+      "description": "Responsive landing page with conversion-focused sections."
+    },
+    {
+      "title": "Spreadsheet Cleanup",
+      "type": "Data Entry",
+      "tags": ["Data Entry"],
+      "image": "https://via.placeholder.com/900x600?text=Data+Entry+Sample",
+      "description": "Data cleanup, normalization, and formatting for reporting."
+    },
+    {
+      "title": "Promo Flyer",
+      "type": "Flyer",
+      "tags": ["Flyers", "Marketing"],
+      "image": "https://via.placeholder.com/900x600?text=Flyer+Sample",
+      "description": "High-impact flyer design for print and social."
+    }
+  ]
+}
