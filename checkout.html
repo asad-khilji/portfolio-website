@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Checkout</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <span style="width:12px;height:12px;border-radius:99px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:inline-block"></span>
+        <span id="bizName">Checkout</span>
+      </div>
+
+      <div style="display:flex; gap:10px; align-items:center">
+        <a class="btn secondary" href="index.html">← Back</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="h-card">
+      <h1 style="font-size:30px;margin:0 0 6px">Checkout</h1>
+      <p>Submit your order details.</p>
+
+      <div class="notice" id="emptyNotice" style="display:none">
+        Your cart is empty. Go back and add a service.
+      </div>
+
+      <div id="orderSummary" class="notice" style="margin:14px 0"></div>
+
+      <form class="form" id="checkoutForm" id="checkoutForm"
+      action="https://formsubmit.co/khiljiasad2@gmail.com"
+      method="POST">
+        <div class="two">
+          <input class="input" name="name" placeholder="Full name" required />
+          <input class="input" name="email" type="email" placeholder="Your email" required />
+        </div>
+        <div class="two">
+          <input class="input" name="phone" placeholder="Phone (optional)" />
+          <input class="input" name="company" placeholder="Company (optional)" />
+        </div>
+
+        <textarea class="input" name="notes" placeholder="Notes / details (sizes, page count, links, brand colors, etc.)"></textarea>
+
+        <!-- Optional: If you later add a backend endpoint, set action="/submit" and method="POST" -->
+        <button class="btn" type="submit" id="submitBtn">Submit Order (Email)</button>
+        <div class="small">
+          
+        </div>
+      </form>
+    </section>
+
+    <div class="footer">
+      Tip: if the email window doesn’t open, your browser may block popups—allow it or copy the order text.
+    </div>
+  </main>
+
+  <script src="js/checkout.js"></script>
+</body>
+</html>

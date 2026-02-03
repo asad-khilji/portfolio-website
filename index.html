@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio & Services</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <span style="width:12px;height:12px;border-radius:99px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:inline-block"></span>
+        <span id="bizName">Your Portfolio</span>
+      </div>
+
+      <div style="display:flex; gap:10px; align-items:center">
+        <a class="btn secondary" href="#services">Services</a>
+        <a class="btn" href="checkout.html">Checkout</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="h-card">
+        <h1>Design + Web + Data services that help you sell.</h1>
+        <p>
+          I create catalogs, websites, data entry solutions, and flyers—fast turnaround, clear pricing, and easy ordering.
+          Add a service to your cart and submit checkout (no online payment).
+        </p>
+
+        <div class="kpis">
+          <div class="kpi">✅ Clear pricing</div>
+          <div class="kpi">⚡ Fast turnaround</div>
+          <div class="kpi">🧾 Order via email</div>
+          <div class="kpi">🛠️ Revisions included</div>
+        </div>
+
+        <hr class="sep" />
+
+        <div class="filters">
+          <input class="input" id="search" placeholder="Search services (e.g., flyer, website)..." />
+          <select id="category">
+            <option value="all">All categories</option>
+          </select>
+          <button class="btn secondary" id="clearFilters">Clear</button>
+        </div>
+      </div>
+
+      <div class="h-card">
+        <h2 style="margin:0 0 10px">How ordering works</h2>
+        <div class="notice">
+          1) Add services to your cart<br/>
+          2) Go to Checkout and fill your details<br/>
+          3) Submit — your email app opens with the order summary<br/>
+          <br/>
+          Want a custom package? Add a note at checkout.
+        </div>
+        <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap">
+          <a class="btn" href="#services">Browse Services</a>
+          <a class="btn secondary" href="checkout.html">Go to Checkout</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="section-title">
+        <h2>Services</h2>
+        <div class="small" id="serviceCount"></div>
+      </div>
+      <div class="grid" id="servicesGrid"></div>
+    </section>
+
+    <div class="footer">
+      © <span id="year"></span> <span id="bizNameFooter"></span> 
+    </div>
+  </main>
+
+  <aside class="cart-drawer" id="cartDrawer" aria-live="polite">
+    <div class="cart-head">
+      <strong>Cart</strong>
+      <span class="pill" id="cartCount">0 items</span>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-foot">
+      <div class="row"><span>Subtotal</span><span id="subtotal">$0</span></div>
+      <a class="btn" href="checkout.html" id="checkoutBtn">Checkout</a>
+      <button class="btn secondary" id="clearCart">Clear cart</button>
+    </div>
+  </aside>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
